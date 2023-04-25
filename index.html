@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bootstrap demo</title>
+
+    <!-- CSS base-->
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous" />
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+
+  </head>
+
+  <body class="bg">
+    <nav class="navbar nav-bg-color shadow-sm navbar-expand-lg">
+      <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1 title-color">Dashboard</span>
+
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+          <div class="d-flex" role="search">
+            <input id="selectedDistrict" list="districtList" class="form-select" aria-label="Digite o nome do bairro"
+              placeholder="Digite o nome do bairro" />
+            <datalist id="districtList"></datalist>
+
+            <input id="selectedSchoolType" list="schoolTypeList" class="form-select  ms-2"
+              aria-label="Digite o tipo de escola" placeholder="Digite o tipo de escola" />
+            <datalist id="schoolTypeList"></datalist>
+
+            <input id="selectedSchoolName" list="schoolNameList" class="form-select  ms-2"
+              aria-label="Digite o nome da escola" placeholder="Digite o nome da escola" />
+            <datalist id="schoolNameList"></datalist>
+
+            <button id="buttonSelect" class="btn btn-primary ms-5">Submit</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container text-center mt-5">
+      <div class="row">
+        <div class="col-4">
+          <div class="card border border-top-0 border-light-subtle group"">
+            <div class=" card-body">
+            <h5 class="card-title">Raça</h5>
+            <canvas id="groupChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card border border-top-0 border-light-subtle year"">
+            <div class=" card-body">
+          <h5 class="card-title">Idade</h5>
+          <canvas id="yearChart" width="" height=""></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-4">
+      <div class="card border border-top-0 border-light-subtle sex">
+        <div class="card-body">
+          <h5 class="card-title">Sexo</h5>
+          <canvas id="sexChart"></canvas>
+        </div>
+      </div>
+    </div>
+    </div>
+    </div>
+
+    <!-- Python -->
+    <div>
+      <py-config src="./python/config.toml"></py-config>
+      <py-script src="./python/main.py"></py-script>
+    </div>
+
+    <!-- JavaScript -->
+    <div>
+      <script src="./javascript/modules/CreteObject.js"></script>
+      <script type="module" src="./javascript/main.js"></script>
+    </div>
+  </body>
+
+</html>
