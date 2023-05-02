@@ -13,68 +13,85 @@ from pyodide.ffi import create_proxy
 
 
 #url = 'http://dados.prefeitura.sp.gov.br/dataset/b9c5faef-1a61-4814-b89e-bd7a73154ebc/resource/0a422138-92a3-422b-ab71-864d88634a50/download/idadeserieneeracadez22.csv'
-url = 'https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv'
-url_content = open_url(url)
-df = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
 
+js.createObject(create_proxy(globals()), 'python')
 
-def function_start():
-    group = lambda x: generate_group_data(df)
-    year = lambda x: generate_yr_data(df)
-    sex = lambda x: generate_sex_data(df)
-    district_array = lambda x: generate_select_district_data(df)
-    school_type_array = lambda x: generate_select_school_type_data(df)
-    school_name_array = lambda x: generate_select_school_name_data(df)
-    js.createObject(create_proxy(group), 'group')
-    js.createObject(create_proxy(year), 'year')
-    js.createObject(create_proxy(sex), 'sex')
-    js.createObject(create_proxy(district_array), 'district_array')
-    js.createObject(create_proxy(school_type_array), 'school_type_array')
-    js.createObject(create_proxy(school_name_array), 'school_name_array')
+class Start:
+    url_content = open_url('https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv')
+    df = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
 
-def function_select_district(district):
-    new = pd.DataFrame(df)
-    new = new.where(df['DISTRITO'] == district)
-    group = lambda x: generate_group_data(new)
-    year = lambda x: generate_yr_data(new)
-    sex = lambda x: generate_sex_data(new)
-    district_array = lambda x: generate_select_district_data(df)
-    school_type_array = lambda x: generate_select_school_type_data(df)
-    school_name_array = lambda x: generate_select_school_name_data(df)
-    js.createObject(create_proxy(group), 'group')
-    js.createObject(create_proxy(year), 'year')
-    js.createObject(create_proxy(sex), 'sex')
-    js.createObject(create_proxy(school_type_array), 'school_type_array')
-    js.createObject(create_proxy(school_name_array), 'school_name_array')
+    def group(self): 
+        return generate_group_data(self.df)
+    def year(self): 
+        return generate_yr_data(self.df)
+    def sex(self): 
+        return generate_sex_data(self.df)
+    def district_array(self): 
+        return generate_select_district_data(self.df)
+    def school_type_array(self): 
+        return generate_select_school_type_data(self.df)
+    def school_name_array(self): 
+        return generate_select_school_name_data(self.df)
 
-def function_select_school_type(school_type):
-    new = pd.DataFrame(df)
-    new = new.where(df['TIPOESC'] == school_type)
-    group = lambda x: generate_group_data(new)
-    year = lambda x: generate_yr_data(new)
-    sex = lambda x: generate_sex_data(new)
-    district_array = lambda x: generate_select_district_data(df)
-    school_type_array = lambda x: generate_select_school_type_data(df)
-    school_name_array = lambda x: generate_select_school_name_data(df)
-    js.createObject(create_proxy(group), 'group')
-    js.createObject(create_proxy(year), 'year')
-    js.createObject(create_proxy(sex), 'sex')
+class Select_district:
+    url_content = open_url('https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv')
+    df = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
+    df = pd.DataFrame(df)
 
-def function_select_school_name(school_name):
-    new = pd.DataFrame(df)
-    new = new.where(df['NOMESC'] == school_name)
-    group = lambda x: generate_group_data(new)
-    year = lambda x: generate_yr_data(new)
-    sex = lambda x: generate_sex_data(new)
-    district_array = lambda x: generate_select_district_data(df)
-    school_type_array = lambda x: generate_select_school_type_data(df)
-    school_name_array = lambda x: generate_select_school_name_data(df)
-    js.createObject(create_proxy(group), 'group')
-    js.createObject(create_proxy(year), 'year')
-    js.createObject(create_proxy(sex), 'sex')
+    def __init__(self, arg):
+        self.new = self.df.where(self.df['DISTRITO'] == arg)
 
-js.createObject(create_proxy(function_select_district), 'function_select_district')
-js.createObject(create_proxy(function_select_school_type), 'function_select_school_type')
-js.createObject(create_proxy(function_select_school_name), 'function_select_school_name')
+    def group(self):
+        return generate_group_data(self.new)
+    def year(self):        
+        return generate_yr_data(self.new)
+    def sex(self): 
+        return generate_sex_data(self.new)
+    def district_array(self): 
+        return generate_select_district_data(self.new)
+    def school_type_array(self): 
+        return generate_select_school_type_data(self.new)
+    def school_name_array(self): 
+        return generate_select_school_name_data(self.new)
 
-function_start()
+class Select_school_type:
+    url_content = open_url('https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv')
+    df = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
+    df = pd.DataFrame(df)
+
+    def __init__(self, arg):
+       self.new = self.df.where(self.df['TIPOESC'] == arg)
+
+    def group(self):
+        return generate_group_data(self.new)
+    def year(self):        
+        return generate_yr_data(self.new)
+    def sex(self): 
+        return generate_sex_data(self.new)
+    def district_array(self): 
+        return generate_select_district_data(self.new)
+    def school_type_array(self): 
+        return generate_select_school_type_data(self.new)
+    def school_name_array(self): 
+        return generate_select_school_name_data(self.new)
+
+class Select_school_name:
+    url_content = open_url('https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv')
+    df = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
+    df = pd.DataFrame(df)
+
+    def __init__(self, arg):
+        self.new = self.df.where(self.df['NOMESC'] == arg)
+        
+    def group(self):
+        return generate_group_data(self.new)
+    def year(self):        
+        return generate_yr_data(self.new)
+    def sex(self): 
+        return generate_sex_data(self.new)
+    def district_array(self): 
+        return generate_select_district_data(self.new)
+    def school_type_array(self): 
+        return generate_select_school_type_data(self.new)
+    def school_name_array(self): 
+        return generate_select_school_name_data(self.new)

@@ -32,26 +32,17 @@ window.addEventListener("click", () => {
   }
 });
 
-function GraphicsErase() {
-  return new Promise(function executor(resolve, reject) {
-    try {
-      data.groupChart.destroy();
-      data.yearChart.destroy();
-      data.sexChart.destroy();
-      resolve();
-    } catch (e) {
-      reject();
-    }
-  });
-}
+function GraphicsInit(func, arg) {
+  const functionControl = ["Start", "Select_district", "Select_school_type", "Select_school_name"];
 
-function GraphicsInit() {
-  data.dataGroup = group("x");
-  data.dataYear = year("x");
-  data.dataSex = sex("x");
-  data.district = district_array("x");
-  data.schoolTypeDistrict = school_type_array("x");
-  data.schoolNameDistrict = school_name_array("x");
+  const start = arg ? python.get(functionControl[func])(arg) : python.get(functionControl[func])();
+
+  data.dataGroup = start.group();
+  data.dataYear = start.year();
+  data.dataSex = start.sex();
+  data.district = start.district_array();
+  data.schoolTypeDistrict = start.school_type_array();
+  data.schoolNameDistrict = start.school_name_array();
 
   data.groupData = JSON.parse(data.dataGroup);
   data.yearData = JSON.parse(data.dataYear);
@@ -130,8 +121,14 @@ function GraphicsInit() {
   });
 }
 
+function GraphicsErase() {
+  data.groupChart.destroy();
+  data.yearChart.destroy();
+  data.sexChart.destroy();
+}
+
 function Start() {
-  GraphicsInit();
+  GraphicsInit(0);
 
   data.districtList = document.getElementById("districtList");
   data.schoolTypeList = document.getElementById("schoolTypeList");
@@ -165,18 +162,17 @@ function Start() {
 
   data.selectButton.addEventListener("click", () => {
     if (data.districtValue.value) {
-      function_select_district(data.districtValue.value);
+      GraphicsErase();
+      GraphicsInit(1, data.districtValue.value);
     }
     if (data.schoolTypeValue.value) {
-      function_select_school_type(data.schoolTypeValue.value);
+      GraphicsErase();
+      GraphicsInit(2, data.schoolTypeValue.value);
     }
     if (data.schoolNameValue.value) {
-      function_select_school_name(data.schoolNameValue.value);
+      GraphicsErase();
+      GraphicsInit(3, data.schoolNameValue.value);
     }
-
-    GraphicsErase()
-      .then(() => GraphicsInit())
-      .catch(() => console.log("Erro ao gerar os graficos atualizados"));
   });
 
   data.beginning = false;
