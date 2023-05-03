@@ -16,9 +16,16 @@ from pyodide.ffi import create_proxy
 
 js.createObject(create_proxy(globals()), 'python')
 
-class Start:
-    url_content = open_url('https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv')
-    df = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
+
+class Connect():
+    def __init__(self):
+        url_content = open_url('https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv')
+        data_csv = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
+        self.df = pd.DataFrame(data_csv)
+
+class Start(Connect):
+    def __init__(self):
+        Connect.__init__(self)
 
     def group(self): 
         return generate_group_data(self.df)
@@ -33,12 +40,9 @@ class Start:
     def school_name_array(self): 
         return generate_select_school_name_data(self.df)
 
-class Select_district:
-    url_content = open_url('https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv')
-    df = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
-    df = pd.DataFrame(df)
-
+class Select_district(Connect):
     def __init__(self, arg):
+        Connect.__init__(self)
         self.new = self.df.where(self.df['DISTRITO'] == arg)
 
     def group(self):
@@ -54,13 +58,10 @@ class Select_district:
     def school_name_array(self): 
         return generate_select_school_name_data(self.new)
 
-class Select_school_type:
-    url_content = open_url('https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv')
-    df = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
-    df = pd.DataFrame(df)
-
+class Select_school_type(Connect):
     def __init__(self, arg):
-       self.new = self.df.where(self.df['TIPOESC'] == arg)
+        Connect.__init__(self)
+        self.new = self.df.where(self.df['TIPOESC'] == arg)
 
     def group(self):
         return generate_group_data(self.new)
@@ -75,12 +76,9 @@ class Select_school_type:
     def school_name_array(self): 
         return generate_select_school_name_data(self.new)
 
-class Select_school_name:
-    url_content = open_url('https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp/base/idadeserieneeracadez22.csv')
-    df = pd.read_csv(url_content, encoding="utf-8", delimiter=";")
-    df = pd.DataFrame(df)
-
+class Select_school_name(Connect):
     def __init__(self, arg):
+        Connect.__init__(self)
         self.new = self.df.where(self.df['NOMESC'] == arg)
         
     def group(self):
