@@ -11,3 +11,6 @@ files = [
     "/python/utils/generate_select_school_type_data.py",
     "/python/utils/generate_select_school_name_data.py"
 ]
+
+[splashscreen]
+    enabled = false

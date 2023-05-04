@@ -24,13 +24,14 @@ let data = {
   schoolTypeValue: "",
   schoolNameValue: "",
   beginning: true,
+  isLoading: true,
 };
 
-window.addEventListener("click", () => {
+export const initProgram = () => {
   if (data.beginning) {
     Start();
   }
-});
+};
 
 function GraphicsInit(func, arg) {
   const functionControl = ["Start", "Select_district", "Select_school_type", "Select_school_name"];
@@ -119,12 +120,31 @@ function GraphicsInit(func, arg) {
       },
     },
   });
+
+  data.isLoading = false;
+  Loading();
 }
 
 function GraphicsErase() {
-  data.groupChart.destroy();
-  data.yearChart.destroy();
-  data.sexChart.destroy();
+  return new Promise((resolve, reject) => {
+    try {
+      data.groupChart.destroy();
+      data.yearChart.destroy();
+      data.sexChart.destroy();
+      resolve();
+    } catch (error) {
+      reject();
+    }
+  });
+}
+
+function Loading() {
+  if (!data.isLoading) {
+    document.getElementById("screen").style.display = "none";
+  }
+  if (data.isLoading) {
+    document.getElementById("screen").style.display = "flex";
+  }
 }
 
 function Start() {
@@ -161,18 +181,19 @@ function Start() {
   data.schoolNameValue = document.getElementById("selectedSchoolName");
 
   data.selectButton.addEventListener("click", () => {
-    if (data.districtValue.value) {
-      GraphicsErase();
-      GraphicsInit(1, data.districtValue.value);
-    }
-    if (data.schoolTypeValue.value) {
-      GraphicsErase();
-      GraphicsInit(2, data.schoolTypeValue.value);
-    }
-    if (data.schoolNameValue.value) {
-      GraphicsErase();
-      GraphicsInit(3, data.schoolNameValue.value);
-    }
+    data.isLoading = true;
+    Loading();
+    setTimeout(() => {
+      if (data.districtValue.value) {
+        GraphicsErase().then(() => GraphicsInit(1, data.districtValue.value));
+      }
+      if (data.schoolTypeValue.value) {
+        GraphicsErase().then(() => GraphicsInit(2, data.schoolTypeValue.value));
+      }
+      if (data.schoolNameValue.value) {
+        GraphicsErase().then(() => GraphicsInit(3, data.schoolNameValue.value));
+      }
+    }, 1000);
   });
 
   data.beginning = false;

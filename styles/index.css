@@ -37,3 +37,15 @@ py-script {
 .title-color {
   color: #02507b !important;
 }
+
+#screen {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #02020291;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.2s;
+}
