@@ -3,10 +3,6 @@ html {
   height: 100%;
 }
 
-.bg {
-  background: 'white';
-}
-
 .group {
   background: rgb(102,8,255);
   background: linear-gradient(180deg, rgba(102,8,255,0) 57%, rgba(97,0,255,0.20) 140%);
@@ -35,7 +31,12 @@ py-script {
 }
 
 .title-color {
-  color: #02507b !important;
+  color: rgb(102,8,255) !important;
+}
+
+.card-dark {
+  background-color: transparent !important;
+  color: #fff !important;
 }
 
 #screen {

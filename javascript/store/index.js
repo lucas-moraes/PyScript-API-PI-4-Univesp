@@ -27,4 +27,8 @@ export const data = {
     beginning: true,
     isLoading: true,
     screen: document.getElementById("screen"),
+    themeProp: {
+      theme: document.getElementById("theme"),
+      isDay: true, 
+    }
   };

@@ -2,8 +2,10 @@ import { data } from "../store/index.js";
 import { GraphicsInit } from "./GraphicsInit.js";
 import { GraphicsErase } from "./GraphicsErase.js";
 import { Loading } from "./Loading.js";
+import { ThemeStart } from "./Theme.js";
 
 export function Start() {
+  ThemeStart();
   GraphicsInit(0);
 
   if (data.beginning) {
