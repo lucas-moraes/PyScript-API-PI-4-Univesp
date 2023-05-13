@@ -1,25 +1,37 @@
 import { data } from "../store/index.js";
 import { BgGraphGenerator } from "./BgGraphGenerator.js";
-import {Loading} from  "./Loading.js"
+import { Loading } from "./Loading.js";
 
 export function GraphicsInit(func, arg) {
   const functionControl = ["Start", "Select_district", "Select_school_type", "Select_school_name"];
 
   const start = arg ? python.get(functionControl[func])(arg) : python.get(functionControl[func])();
 
-  data.dataGroup = start.group();
-  data.dataYear = start.year();
-  data.dataSex = start.sex();
-  data.district = start.district_array();
-  data.schoolTypeDistrict = start.school_type_array();
-  data.schoolNameDistrict = start.school_name_array();
+  data.groupData = JSON.parse(start.group());
+  data.yearData = JSON.parse(start.year());
+  data.sexData = JSON.parse(start.sex());
+  data.districtData = JSON.parse(start.district_array());
+  data.schoolTypeDistrictData = JSON.parse(start.school_type_array());
+  data.schoolNameDistrictData = JSON.parse(start.school_name_array());
+  
+  if(func == 1){
+    data.resume = JSON.parse(start.resume_array())
+  }
 
-  data.groupData = JSON.parse(data.dataGroup);
-  data.yearData = JSON.parse(data.dataYear);
-  data.sexData = JSON.parse(data.dataSex);
-  data.districtData = JSON.parse(data.district);
-  data.schoolTypeDistrictData = JSON.parse(data.schoolTypeDistrict);
-  data.schoolNameDistrictData = JSON.parse(data.schoolNameDistrict);
+  if (data.resume){
+    for (const key in data.resume){
+      const list = document.createElement("tr")
+
+      list.innerHTML = `
+        <tr>
+          <td>${key}</td>
+          <td>${data.resume[key]}</td>
+        </tr>
+      `
+
+      data.resumeTable.append(list)
+    }
+  }
 
   data.groupChart = new Chart(data.groupElement, {
     type: "pie",

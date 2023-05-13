@@ -7,6 +7,7 @@ from python.utils.generate_sex_data import generate_sex_data
 from python.utils.generate_select_district_data import generate_select_district_data
 from python.utils.generate_select_school_type_data import generate_select_school_type_data
 from python.utils.generate_select_school_name_data import generate_select_school_name_data
+from python.utils.generate_resume_data import generate_resume_data
 
 from pyodide.http import open_url
 from pyodide.ffi import create_proxy
@@ -57,6 +58,8 @@ class Select_district(Connect):
         return generate_select_school_type_data(self.new)
     def school_name_array(self): 
         return generate_select_school_name_data(self.new)
+    def resume_array(self):
+        return generate_resume_data(self.new)
 
 class Select_school_type(Connect):
     def __init__(self, arg):

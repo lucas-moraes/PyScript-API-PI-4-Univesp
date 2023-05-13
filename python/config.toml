@@ -9,7 +9,8 @@ files = [
     "/python/utils/generate_sex_data.py",
     "/python/utils/generate_select_district_data.py",
     "/python/utils/generate_select_school_type_data.py",
-    "/python/utils/generate_select_school_name_data.py"
+    "/python/utils/generate_select_school_name_data.py",
+    "/python/utils/generate_resume_data.py"
 ]
 
 [splashscreen]

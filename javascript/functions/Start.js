@@ -29,12 +29,29 @@ export function Start() {
     }
   }
 
+  data.resetButton.addEventListener("click", () => {
+    data.isLoading = true;
+    Loading();
+    document.getElementById("districtResume").style.display = "none";
+    document.getElementById("districtResumeTitle").innerText = "";
+
+    data.districtValue.value = "";
+    data.schoolTypeValue.value = "";
+    data.schoolNameValue.value = "";
+    setTimeout(() => {
+      data.resume = "";
+      GraphicsErase().then(() => GraphicsInit(0));
+    }, 1000)
+  });
+
   data.selectButton.addEventListener("click", () => {
     data.isLoading = true;
     Loading();
     setTimeout(() => {
       if (data.districtValue.value) {
         GraphicsErase().then(() => GraphicsInit(1, data.districtValue.value));
+        document.getElementById("districtResume").style.display = "block";
+        document.getElementById("districtResumeTitle").innerText = data.districtValue.value;
       }
       if (data.schoolTypeValue.value) {
         GraphicsErase().then(() => GraphicsInit(2, data.schoolTypeValue.value));

@@ -2,12 +2,6 @@ export const data = {
     groupChart: "",
     yearChart: "",
     sexChart: "",
-    dataGroup: "",
-    dataYear: "",
-    dataSex: "",
-    district: "",
-    schoolTypeDistrict: "",
-    schoolNameDistrict: "",
     groupData: "",
     yearData: "",
     sexData: "",
@@ -18,6 +12,7 @@ export const data = {
     schoolTypeList: document.getElementById("schoolTypeList"),
     schoolNameList: document.getElementById("schoolNameList"),
     selectButton: document.getElementById("buttonSelect"),
+    resetButton: document.getElementById("buttonReset"),
     districtValue: document.getElementById("selectedDistrict"),
     schoolTypeValue: document.getElementById("selectedSchoolType"),
     schoolNameValue: document.getElementById("selectedSchoolName"),
@@ -30,5 +25,7 @@ export const data = {
     themeProp: {
       theme: document.getElementById("theme"),
       isDay: true, 
-    }
+    },
+    resume: null,
+    resumeTable: document.getElementById("resumeTable"),
   };

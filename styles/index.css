@@ -50,3 +50,7 @@ py-script {
   align-items: center;
   transition: 0.2s;
 }
+
+#districtResume {
+  display: none;
+}
