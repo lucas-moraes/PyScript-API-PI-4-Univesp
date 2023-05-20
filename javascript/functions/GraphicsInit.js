@@ -18,17 +18,55 @@ export function GraphicsInit(func, arg) {
     data.resume = JSON.parse(start.resume_array())
   }
 
+  if(func == 3) {
+    data.groupTableTitle.innerText = arg;
+
+    for(const key in data.groupData){
+      const list = document.createElement("tr")
+      list.innerHTML = `
+      <tr>
+        <td>${key.replace("�", "Ã")}</td>
+        <td>${data.groupData[key]}</td>
+      </tr>
+    `
+    data.groupTable.append(list)
+    }
+
+    for(const key in data.yearData){
+      const list = document.createElement("tr")
+      list.innerHTML = `
+      <tr>
+        <td>${key}</td>
+        <td>${data.yearData[key]}</td>
+      </tr>
+    `
+    data.yearTable.append(list)
+    }
+
+    for(const key in data.sexData){
+      const list = document.createElement("tr")
+      list.innerHTML = `
+      <tr>
+        <td>${key}</td>
+        <td>${data.sexData[key]}</td>
+      </tr>
+    `
+    data.sexTable.append(list)
+    }
+
+    document.getElementById("table").style.display = "block"
+  }
+
+
   if (data.resume){
     for (const key in data.resume){
       const list = document.createElement("tr")
-
       list.innerHTML = `
         <tr>
           <td>${key}</td>
           <td>${data.resume[key]}</td>
         </tr>
       `
-
       data.resumeTable.append(list)
     }
   }

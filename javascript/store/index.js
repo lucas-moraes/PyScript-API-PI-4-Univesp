@@ -28,4 +28,8 @@ export const data = {
     },
     resume: null,
     resumeTable: document.getElementById("resumeTable"),
+    groupTableTitle: document.getElementById("gropupTableTitle"),
+    groupTable: document.getElementById("groupTable"),
+    yearTable: document.getElementById("yearTable"),
+    sexTable: document.getElementById("sexTable")
   };

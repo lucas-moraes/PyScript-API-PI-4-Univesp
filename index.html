@@ -81,22 +81,75 @@
           </div>
         </div>
       </div>
-      <div class="row mt-5">
-        <div id="districtResume" class="col-4">
+      <div id="districtResume" class="row mt-5">
+        <div class="col-4">
           <div class="card border border-light-subtle">
-          <h5 class="card-header"><span id="districtResumeTitle"></span></h5>
-          <div class="card-body">
-            <table class="table">
-              <thead>
-                <tr>
-                  <th scope="col">Tipo de escola</th>
-                  <th scope="col">Total</th>
-                </tr>
-              </thead>
-              <tbody id="resumeTable"></tbody>
-            </table>
+            <h5 class="card-header bg-primary bg-gradient text-white"><span id="districtResumeTitle"></span></h5>
+            <div class="card-body">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Tipo de escola</th>
+                    <th scope="col">Total</th>
+                  </tr>
+                </thead>
+                <tbody id="resumeTable"></tbody>
+              </table>
+            </div>
           </div>
         </div>
+      </div>
+      <div id="table" class="row mt-5">
+        <div class="col-12">
+          <div class="card border">
+            <h5 class="card-header bg-primary bg-gradient text-white">Escola <span id="gropupTableTitle"></span></span></h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <div class="card border">
+                    <h5 class="card-header bg-info bg-gradient">Raça</h5>
+                    <table class="table table-hover">
+                      <thead class="bg-secondary-subtle">
+                        <tr>
+                          <th scope="col">Descrição</th>
+                          <th scope="col">Quantidade</th>
+                        </tr>
+                      </thead>
+                      <tbody id="groupTable"></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="card border">
+                    <h5 class="card-header bg-info bg-gradient">Idade</h5>
+                    <table class="table table-hover">
+                      <thead class="bg-secondary-subtle">
+                        <tr>
+                          <th scope="col">Descrição</th>
+                          <th scope="col">Quantidade</th>
+                        </tr>
+                      </thead>
+                      <tbody id="yearTable"></tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="col-4">
+                  <div class="card border">
+                    <h5 class="card-header bg-info bg-gradient">Sexo</h5>
+                    <table class="table table-hover">
+                      <thead class="bg-secondary-subtle">
+                        <tr>
+                          <th scope="col">Descrição</th>
+                          <th scope="col">Quantidade</th>
+                        </tr>
+                      </thead>
+                      <tbody id="sexTable"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

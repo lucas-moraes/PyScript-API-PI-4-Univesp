@@ -31,9 +31,13 @@ export function Start() {
 
   data.resetButton.addEventListener("click", () => {
     data.isLoading = true;
+    data.districtValue.disabled = false;
+    data.schoolTypeValue.disabled = false;
+    data.schoolNameValue.disabled = false;
     Loading();
     document.getElementById("districtResume").style.display = "none";
     document.getElementById("districtResumeTitle").innerText = "";
+    document.getElementById("table").style.display = "none";
 
     data.districtValue.value = "";
     data.schoolTypeValue.value = "";
@@ -48,15 +52,21 @@ export function Start() {
     data.isLoading = true;
     Loading();
     setTimeout(() => {
-      if (data.districtValue.value) {
+      if (data.districtValue.value && !data.schoolTypeValue.value && !data.schoolNameValue.value) {
+        data.schoolTypeValue.disabled = true;
+        data.schoolNameValue.disabled = true;
         GraphicsErase().then(() => GraphicsInit(1, data.districtValue.value));
         document.getElementById("districtResume").style.display = "block";
         document.getElementById("districtResumeTitle").innerText = data.districtValue.value;
       }
-      if (data.schoolTypeValue.value) {
+      if (!data.districtValue.value && data.schoolTypeValue.value && !data.schoolNameValue.value) {
+        data.districtValue.disabled = true;
+        data.schoolNameValue.disabled = true;
         GraphicsErase().then(() => GraphicsInit(2, data.schoolTypeValue.value));
       }
-      if (data.schoolNameValue.value) {
+      if (!data.districtValue.value && !data.schoolTypeValue.value && data.schoolNameValue.value) {
+        data.districtValue.disabled = true;
+        data.schoolTypeValue.disabled = true;
         GraphicsErase().then(() => GraphicsInit(3, data.schoolNameValue.value));
       }
     }, 1000);
