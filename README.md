@@ -19,7 +19,7 @@
 
 <img src="https://user-images.githubusercontent.com/50468352/239700315-c4e9dbfd-5b36-4121-9571-d29f199f4d8c.png" />
 
-[🟡 - Clique para acessar o site do projeto](https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp)
+<p><a href="https://lucas-moraes.github.io/PyScript-API-PI-4-Univesp" target="_blank">🟡 - Clique para acessar o site do projeto</a></p>
 
 ---
 <details>
