@@ -27,124 +27,128 @@
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
-    <nav class="navbar nav-bg-color shadow-sm navbar-expand-lg">
-      <div class="container-fluid">
-        <span class="navbar-brand mb-0 h1 title-color">Dashboard</span>
 
-        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
-          <div class="d-flex" role="search">
-            <button id="buttonReset" class="btn btn-success me-5">Resetar</button>
+    <div>
+      <nav class="navbar nav-bg-color shadow-sm navbar-expand-lg">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1 title-color">Dashboard</span>
 
-            <input id="selectedDistrict" list="districtList" class="form-select" aria-label="Digite o nome do bairro"
-              placeholder="Digite o nome do bairro" />
-            <datalist id="districtList"></datalist>
+          <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <div class="d-flex" role="search">
+              <button id="buttonReset" class="btn btn-success me-5">Resetar</button>
 
-            <input id="selectedSchoolType" list="schoolTypeList" class="form-select  ms-2"
-              aria-label="Digite o tipo de escola" placeholder="Digite o tipo de escola" />
-            <datalist id="schoolTypeList"></datalist>
+              <input id="selectedDistrict" list="districtList" class="form-select" aria-label="Digite o nome do bairro"
+                placeholder="Digite o nome do bairro" />
+              <datalist id="districtList"></datalist>
 
-            <input id="selectedSchoolName" list="schoolNameList" class="form-select  ms-2"
-              aria-label="Digite o nome da escola" placeholder="Digite o nome da escola" />
-            <datalist id="schoolNameList"></datalist>
+              <input id="selectedSchoolType" list="schoolTypeList" class="form-select  ms-2"
+                aria-label="Digite o tipo de escola" placeholder="Digite o tipo de escola" />
+              <datalist id="schoolTypeList"></datalist>
 
-            <button id="buttonSelect" class="btn btn-primary ms-5">Pesquisar</button>
+              <input id="selectedSchoolName" list="schoolNameList" class="form-select  ms-2"
+                aria-label="Digite o nome da escola" placeholder="Digite o nome da escola" />
+              <datalist id="schoolNameList"></datalist>
+
+              <button id="buttonSelect" class="btn btn-primary ms-5">Pesquisar</button>
+            </div>
           </div>
+          <div id="theme"></div>
         </div>
-        <div id="theme"></div>
-      </div>
-    </nav>
+      </nav>
 
-    <div class="container text-center mt-5">
-      <div class="row">
-        <div class="col-4">
-          <div id="card1" class="card border border-top-0 border-light-subtle group">
-            <div class="card-body">
-              <h5 class="card-title">Raça</h5>
-              <canvas id="groupChart" width="380" height="220"></canvas>
+      <div class="container text-center mt-5">
+        <div class="row">
+          <div class="col-4">
+            <div id="card1" class="card border border-top-0 border-light-subtle group">
+              <div class="card-body">
+                <h5 class="card-title">Raça</h5>
+                <canvas id="groupChart" width="380" height="220"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div id="card2" class="card border border-top-0 border-light-subtle year">
+              <div class="card-body">
+                <h5 class="card-title">Idade</h5>
+                <canvas id="yearChart" width="380" height="220"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-4">
+            <div id="card3" class="card border border-top-0 border-light-subtle sex">
+              <div class="card-body">
+                <h5 class="card-title">Sexo</h5>
+                <canvas id="sexChart" width="380" height="220"></canvas>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-4">
-          <div id="card2" class="card border border-top-0 border-light-subtle year">
-            <div class="card-body">
-              <h5 class="card-title">Idade</h5>
-              <canvas id="yearChart" width="380" height="220"></canvas>
+        <div id="districtResume" class="row mt-5">
+          <div class="col-4">
+            <div class="card border border-light-subtle">
+              <h5 class="card-header bg-primary bg-gradient text-white"><span id="districtResumeTitle"></span></h5>
+              <div class="card-body">
+                <table class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Tipo de escola</th>
+                      <th scope="col">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody id="resumeTable"></tbody>
+                </table>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-4">
-          <div id="card3" class="card border border-top-0 border-light-subtle sex">
-            <div class="card-body">
-              <h5 class="card-title">Sexo</h5>
-              <canvas id="sexChart" width="380" height="220"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="districtResume" class="row mt-5">
-        <div class="col-4">
-          <div class="card border border-light-subtle">
-            <h5 class="card-header bg-primary bg-gradient text-white"><span id="districtResumeTitle"></span></h5>
-            <div class="card-body">
-              <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Tipo de escola</th>
-                    <th scope="col">Total</th>
-                  </tr>
-                </thead>
-                <tbody id="resumeTable"></tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="table" class="row mt-5">
-        <div class="col-12">
-          <div class="card border">
-            <h5 class="card-header bg-primary bg-gradient text-white">Escola <span id="gropupTableTitle"></span></span></h5>
-            <div class="card-body">
-              <div class="row">
-                <div class="col-4">
-                  <div class="card border">
-                    <h5 class="card-header bg-info bg-gradient">Raça</h5>
-                    <table class="table table-hover">
-                      <thead class="bg-secondary-subtle">
-                        <tr>
-                          <th scope="col">Descrição</th>
-                          <th scope="col">Quantidade</th>
-                        </tr>
-                      </thead>
-                      <tbody id="groupTable"></tbody>
-                    </table>
+        <div id="table" class="row mt-5">
+          <div class="col-12">
+            <div class="card border">
+              <h5 class="card-header bg-primary bg-gradient text-white">Escola <span
+                  id="gropupTableTitle"></span></span></h5>
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="card border">
+                      <h5 class="card-header bg-info bg-gradient">Raça</h5>
+                      <table class="table table-hover">
+                        <thead class="bg-secondary-subtle">
+                          <tr>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Quantidade</th>
+                          </tr>
+                        </thead>
+                        <tbody id="groupTable"></tbody>
+                      </table>
+                    </div>
                   </div>
-                </div>
-                <div class="col-4">
-                  <div class="card border">
-                    <h5 class="card-header bg-info bg-gradient">Idade</h5>
-                    <table class="table table-hover">
-                      <thead class="bg-secondary-subtle">
-                        <tr>
-                          <th scope="col">Descrição</th>
-                          <th scope="col">Quantidade</th>
-                        </tr>
-                      </thead>
-                      <tbody id="yearTable"></tbody>
-                    </table>
+                  <div class="col-4">
+                    <div class="card border">
+                      <h5 class="card-header bg-info bg-gradient">Idade</h5>
+                      <table class="table table-hover">
+                        <thead class="bg-secondary-subtle">
+                          <tr>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Quantidade</th>
+                          </tr>
+                        </thead>
+                        <tbody id="yearTable"></tbody>
+                      </table>
+                    </div>
                   </div>
-                </div>
-                <div class="col-4">
-                  <div class="card border">
-                    <h5 class="card-header bg-info bg-gradient">Sexo</h5>
-                    <table class="table table-hover">
-                      <thead class="bg-secondary-subtle">
-                        <tr>
-                          <th scope="col">Descrição</th>
-                          <th scope="col">Quantidade</th>
-                        </tr>
-                      </thead>
-                      <tbody id="sexTable"></tbody>
-                    </table>
+                  <div class="col-4">
+                    <div class="card border">
+                      <h5 class="card-header bg-info bg-gradient">Sexo</h5>
+                      <table class="table table-hover">
+                        <thead class="bg-secondary-subtle">
+                          <tr>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Quantidade</th>
+                          </tr>
+                        </thead>
+                        <tbody id="sexTable"></tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -152,6 +156,7 @@
           </div>
         </div>
       </div>
+
     </div>
 
     <!-- Python -->
